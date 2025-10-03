@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi App{% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-ant-path/dist/leaflet-ant-path.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+{% if user.is_authenticated %}
+    <p style="text-align: right; margin-right: 100px; color: rgb(0, 0, 0);">Bienvenid@
+            &nbsp;&nbsp;&nbsp;<em style="color: rgb(17, 17, 19);"> {{ user.username }}&nbsp;&nbsp;&nbsp;<img src="{% static 'img/espana.png' %}" width="30"
+              height="30"></p>
+{% else %}
+    <p>No logueado</p>
+{% endif %}
+   <header class="navbar">
+        <div class="logo">
+            <h1 class="logo"> <img src="{% static 'img/milogo.png' %}" width="200" height="200"></h1>
+            <nav class="nav-links">
+                <a href="{% url 'home' %}">Inicio</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://park4night.com/es" target="_blank" rel="noopener noreferrer">Park4night</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://www.lulukabaraka.com/" target="_blank" rel="noopener noreferrer">Recambios</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'sobre_mi' %}">Sobre la App</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{% url 'ruta' %}">Crea tu Ruta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                  {% if user.is_authenticated %}
+                <a href="{% url 'c_sesion' %}">Cerrar sesión</a></li>
+            
+                  {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        &copy; {{ now.year }} MyAutocaravApp. Todos los derechos reservados.
+    </footer>
+</body>
+</html>
+
+
+   

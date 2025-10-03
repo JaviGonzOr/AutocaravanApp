@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruta en Autocaravana</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <style>
+    #map { height: 600px; }
+     #controls {
+            position: absolute;
+            top: 10px;
+            right: 10px; /* Botón a la derecha */
+            z-index: 1000;
+        }
+        #startBtn {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        #startBtn:hover {
+            background-color: #e64a19;
+        }
+  </style>
+</head>
+<body>
+  <h1>Ruta en Autocaravana</h1>
+  <div id="map"></div>
+    <div id="controls">
+        <button id="startBtn" onclick="startRoute()">Iniciar Recorrido</button>
+    </div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <script>
+    // Inicializar mapa
+    var map = L.map('map').setView([40.4168, -3.7038], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    var waypoints = [];
+    var routeControl;
+    var routeCoords = [];  // Guardaremos las coordenadas de la ruta
+
+    var carMarker = L.marker([40.4168, -3.7038], {
+      icon: L.divIcon({
+        html: "🚐",
+        className: "",
+        iconSize: [50, 50],
+        iconAnchor: [24, 24]
+      })
+    }).addTo(map);
+
+    // Añadir puntos con clic
+    map.on('click', function(e) {
+      if (waypoints.length < 2) {
+        waypoints.push(e.latlng);
+        L.marker(e.latlng).addTo(map).bindPopup("Destino " + waypoints.length).openPopup();
+      }
+
+      if (waypoints.length === 2) {
+        if (routeControl) {
+          routeControl.setWaypoints(waypoints);
+        } else {
+          routeControl = L.Routing.control({
+            waypoints: waypoints,
+            routeWhileDragging: true,
+            createMarker: () => null
+          }).addTo(map);
+
+          // 🚀 Cuando la ruta esté lista, guardamos los puntos
+          routeControl.on('routesfound', function(e) {
+            routeCoords = e.routes[0].coordinates;
+            console.log("Ruta calculada con " + routeCoords.length + " puntos.");
+          });
+        }
+      }
+    });
+
+    // Animar autocaravana 🚐
+    function startRoute() {
+      if (routeCoords.length === 0) {
+        alert("Primero selecciona una ruta (2 puntos).");
+        return;
+      }
+
+      var i = 0;
+      function moveCar() {
+        if (i < routeCoords.length) {
+          carMarker.setLatLng([routeCoords[i].lat, routeCoords[i].lng]);
+          i++;
+          setTimeout(moveCar, 200); // velocidad (200ms entre puntos)
+        } else {
+          alert("¡Recorrido completado!");
+        }
+      }
+      moveCar();
+    }
+  </script>
+</body>
+</html>

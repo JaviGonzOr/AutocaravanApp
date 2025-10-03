@@ -1,0 +1,55 @@
+{% extends 'viajes/base.html' %}
+
+{% block title %}{{ viaje.titulo }}{% endblock %}
+
+{% block content %}
+<h2 class="titulo">{{ viaje.titulo }}</h2>
+<p class="fechas">{{ viaje.fecha_inicio }} - {{ viaje.fecha_fin }}</p>
+<p class="descripcion">{{ viaje.descripcion }}</p>
+
+<h3 class="subtitulo">Galería de imágenes</h3>
+<div class="galeria">
+    {% for archivo in viaje.archivos.all %}
+        {% with url=archivo.archivo.url %}
+            {% if ".jpg" in url|lower or ".jpeg" in url|lower or ".png" in url|lower %}
+                <div class="miniatura-container">
+                    <img src="{{ url }}" class="miniatura" onclick="openLightbox('{{ url }}')">
+                    <a href="{% url 'eliminar_archivo' archivo.pk %}" class="btn-eliminar" onclick="return confirm('¿Seguro que quieres eliminar esta foto?');">&times;</a>
+                </div>
+            {% else %}
+                <div class="miniatura-container">
+                    <a href="{{ url }}" class="text-blue-500 hover:underline">{{ archivo.archivo.name }}</a>
+                    <a href="{% url 'eliminar_archivo' archivo.pk %}" class="btn-eliminar" onclick="return confirm('¿Seguro que quieres eliminar este archivo?');">&times;</a>
+                </div>
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+</div>
+
+<!-- Lightbox modal -->
+<div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+    <img id="lightbox-img" src="">
+</div>
+
+<a href="{% url 'editar_viaje' viaje.pk %}" class="btn-editar">Editar viaje</a>
+<a href="{% url 'eliminar_viaje' viaje.pk %}" 
+   class="btn-eliminar-viaje" 
+   onclick="return confirm('¿Seguro que quieres eliminar todo este viaje y sus archivos?');">
+   Eliminar viaje
+</a>
+<a href="{% url 'lista_viajes' %}"class= "btn btn-outline-info" role="button">Guardar Viaje</a>
+
+
+<script>
+function openLightbox(url) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = url;
+    lightbox.classList.remove('hidden');
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.add('hidden');
+}
+</script>
+{% endblock %}

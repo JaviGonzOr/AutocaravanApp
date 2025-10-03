@@ -1,0 +1,29 @@
+{% extends 'viajes/base.html' %}
+
+{% block title %}Editar viaje{% endblock %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Editar viaje: {{ viaje.titulo }}</h2>
+
+<form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label class="block mt-4">Subir más archivos</label>
+    <input type="file" name="archivos" multiple class="mt-2">
+    <button type="submit" class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded">Actualizar</button>
+</form>
+
+<h3 class="text-xl mt-6 mb-2">Archivos existentes</h3>
+<div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center">
+    {% for archivo in viaje.archivos.all %}
+        {% with url=archivo.archivo.url %}
+            {% if ".jpg" in url|lower or ".jpeg" in url|lower or ".png" in url|lower %}
+                <img src="{{ url }}" class="miniatura" onclick="openLightbox('{{ url }}')">
+            {% else %}
+                <a href="{{ url }}" class="text-blue-500 hover:underline">{{ archivo.archivo.name }}</a>
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+</div>
+
+{% endblock %}

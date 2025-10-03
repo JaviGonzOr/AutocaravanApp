@@ -1,0 +1,41 @@
+{% extends 'viajes/base.html' %} {% load static %} {% block content %}
+
+
+
+      
+<div class="hero">
+    <div class="overlay">
+        <h1>Bienvenido a MyAutocaravApp</h1>
+        <p>
+      Registra y comparte tus viajes en autocaravana de forma fácil y divertida. 🚐✨</p>
+      <a href="{% url 'nuevo_viaje' %}" class="btn-hero">Nuevo Viaje</a>
+    </div>
+</div>
+
+
+<!-- GRID DE VIAJES -->
+<h2 class="titulo">Mis viajes</h2>
+<div class="grid-viajes">
+  {% for viaje in viajes %}
+  <div class="card-viaje">
+    {% with portada=viaje.archivos.first %} {% if portada %}
+    <img src="{{ portada.archivo.url }}" class="card-img" />
+    {% else %}
+    <div class="card-img no-foto">Sin fotos</div>
+    {% endif %} {% endwith %}
+    <div class="card-body">
+      <h3 class="card-titulo">{{ viaje.titulo }}</h3>
+      <p class="card-fechas">
+        {{ viaje.fecha_inicio }} - {{ viaje.fecha_fin }}
+      </p>
+      <p class="card-descripcion">{{ viaje.descripcion|truncatewords:20 }}</p>
+      <a href="{% url 'detalle_viaje' viaje.pk %}" class="btn-detalle"
+        >Ver detalles</a
+      >
+    </div>
+  </div>
+  {% empty %}
+  <p>No hay viajes registrados todavía.</p>
+  {% endfor %}
+</div>
+{% endblock %}

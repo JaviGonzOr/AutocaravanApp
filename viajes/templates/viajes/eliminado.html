@@ -1,0 +1,17 @@
+
+{% block content %}
+
+{% load static %}
+
+<h1>
+    <div class="card text-start">
+        <div class="card-body">
+            <h1 style="color: red;">HASTA PRONTO!!</h1>
+            <img src="{% static 'img/dragon-ball.gif' %}" height="400" class="text-center" alt="">
+            <a href="{% url 'home' %}" class="btn btn-outline-info" role="button">Redirecciona a la página Principal</a>
+        </div>
+    </div>
+</h1>
+
+
+{% endblock %}

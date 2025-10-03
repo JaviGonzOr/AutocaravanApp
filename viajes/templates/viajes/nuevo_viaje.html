@@ -1,0 +1,34 @@
+{% extends 'viajes/base.html' %}
+{% load static %}
+
+{% block title %}Nuevo Viaje{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Nuevo Viaje</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+            <small>{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <label for="archivos">Archivos multimedia</label>
+            <input type="file" name="archivos" id="archivos" multiple>
+        </div>
+
+        <button type="submit" class="btn-submit">Guardar viaje</button>
+    </form>
+</div>
+{% endblock %}

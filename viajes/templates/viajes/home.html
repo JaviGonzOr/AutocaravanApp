@@ -1,0 +1,19 @@
+{% extends 'viajes/base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="overlay">
+        <h1>Bienvenido a mi mundo de viajes</h1>
+        <p>No pierdas nunca tus aventuras en carretera 🚐✨</p>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'lista_viajes' %}" class="btn">Ver viajes</a>
+        {% else %}
+            <a href="{% url 'i_sesion' %}" class="btn">Inicia sesión</a>
+            <a href="{% url 'registro' %}" class="btn">Regístrate</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
