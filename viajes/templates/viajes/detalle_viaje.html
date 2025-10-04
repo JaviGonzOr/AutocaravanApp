@@ -6,15 +6,20 @@
 <h2 class="titulo">{{ viaje.titulo }}</h2>
 <p class="fechas">{{ viaje.fecha_inicio }} - {{ viaje.fecha_fin }}</p>
 <p class="descripcion">{{ viaje.descripcion }}</p>
+<p style="font-family: 'Times New Roman', Times, serif; color: darkblue;" class="origen">ORIGEN: {{ viaje.origen }}</p>
+<p style="font-family: 'Times New Roman', Times, serif; color: darkblue;" class="destino">DESTINO: {{ viaje.destino }}</p>
+
 
 <h3 class="subtitulo">Galería de imágenes</h3>
 <div class="galeria">
     {% for archivo in viaje.archivos.all %}
         {% with url=archivo.archivo.url %}
             {% if ".jpg" in url|lower or ".jpeg" in url|lower or ".png" in url|lower %}
+            
+    
                 <div class="miniatura-container">
                     <img src="{{ url }}" class="miniatura" onclick="openLightbox('{{ url }}')">
-                    <a href="{% url 'eliminar_archivo' archivo.pk %}" class="btn-eliminar" onclick="return confirm('¿Seguro que quieres eliminar esta foto?');">&times;</a>
+
                 </div>
             {% else %}
                 <div class="miniatura-container">
@@ -23,6 +28,8 @@
                 </div>
             {% endif %}
         {% endwith %}
+        
+
     {% endfor %}
 </div>
 
@@ -52,4 +59,6 @@ function closeLightbox() {
     document.getElementById('lightbox').classList.add('hidden');
 }
 </script>
+
+
 {% endblock %}

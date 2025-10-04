@@ -1,12 +1,19 @@
 {% extends 'viajes/base.html' %}
+{% load static %} 
 
 {% block title %}Sobre la App{% endblock %}
 
+
+
 {% block content %}
-<h2>Sobre la App</h2>
-</a>
-<p>¡Hola! Amantes de los viajes en autocaravana, Campers, Caravanas...etc. 
+<div class="hero" style="background-image: url('{% static "img/fondo.jpg" %}');">
+  <div class="overlay">
+        
+        <p>¡Hola! Amantes de los viajes en autocaravana, Campers, Caravanas...etc. 
             Si te encanta recorrer nuevos lugares, descubrir rutas escondidas
             y compartir experiencias con los demás. En esta app podrás
-            seguir tus viajes, ver fotos y planear tus propias aventuras.</p>
+            seguir tus viajes, ver fotos y planear tus propias aventuras.</p> 🚐</p>
+    </div>
+</div>
 {% endblock %}
+

@@ -1,11 +1,12 @@
 {% extends 'viajes/base.html' %}
+{% load static %} 
 
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-<div class="hero">
-    <div class="overlay">
-        <h1>Bienvenido a mi mundo de viajes</h1>
+<div class="hero" style="background-image: url('{% static "img/tu_foto.jpg" %}');">
+  <div class="overlay">
+        <h1>Bienvenido a tu mundo de viajes</h1>
         <p>No pierdas nunca tus aventuras en carretera 🚐✨</p>
 
         {% if user.is_authenticated %}
@@ -16,4 +17,5 @@
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

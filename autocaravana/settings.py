@@ -7,9 +7,9 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
-SECRET_KEY = 'cambia-esto-por-una-clave-unica-y-segura'
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = 'Mija2801'
+DEBUG = True
+ALLOWED_HOSTS = ['https://myautocaravanapp.onrender.com']
 
 
 # settings.py
@@ -66,16 +66,11 @@ WSGI_APPLICATION = 'autocaravana.wsgi.application'
 # Base de datos por defecto: SQLite para desarrollo
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',  # fallback local
-        conn_max_age=600,
-        ssl_require=True
+        default=os.environ.get('DATABASE_URL')
     )
 }
 
-# Si existe la variable de entorno DATABASE_URL (Heroku), la usamos
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+
 
 # Validación de contraseñas
 AUTH_PASSWORD_VALIDATORS = [
@@ -92,8 +87,8 @@ USE_I18N = True
 USE_TZ = True
 
 # Archivos estáticos
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Archivos multimedia
@@ -109,3 +104,10 @@ SESSION_SAVE_EVERY_REQUEST = True
 # Clave por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # para producción puedes usar Gmail u otro SMTP
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'superderesain@gmail.com'
+EMAIL_HOST_PASSWORD = '28061982'

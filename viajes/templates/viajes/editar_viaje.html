@@ -18,9 +18,10 @@
     {% for archivo in viaje.archivos.all %}
         {% with url=archivo.archivo.url %}
             {% if ".jpg" in url|lower or ".jpeg" in url|lower or ".png" in url|lower %}
-                <img src="{{ url }}" class="miniatura" onclick="openLightbox('{{ url }}')">
-            {% else %}
-                <a href="{{ url }}" class="text-blue-500 hover:underline">{{ archivo.archivo.name }}</a>
+                <div class="miniatura-container">
+                    <img src="{{ url }}" class="miniatura" onclick="openLightbox('{{ url }}')">
+                    <a href="{% url 'eliminar_archivo' archivo.pk %}" class="btn-eliminar" onclick="return confirm('¿Seguro que quieres eliminar esta foto?');">&times;</a>
+                </div>
             {% endif %}
         {% endwith %}
     {% endfor %}

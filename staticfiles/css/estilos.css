@@ -1,0 +1,622 @@
+
+
+
+
+/* ===== TIPOGRAFÍA Y COLORES ===== */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* ===== NAVBAR ===== */
+
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+    color: #007BFF;
+}
+
+.menu a {
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* ===== TARJETAS DE VIAJE ===== */
+.grid-viajes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .grid-viajes {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-viajes {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.card-viaje {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-viaje:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-titulo {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.card-fechas {
+    font-size: 14px;
+    color: #777;
+    margin: 0 0 10px;
+}
+
+.card-descripcion {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.btn-detalle {
+    display: inline-block;
+    background: #007BFF;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.btn-detalle:hover {
+    background: #0056b3;
+}
+
+/* ===== MINIATURAS DE ARCHIVOS ===== */
+.miniatura-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.miniatura {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.miniatura:hover {
+    opacity: 0.8;
+}
+
+.btn-eliminar {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(255,0,0,0.8);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background: rgba(255,0,0,1);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* ===== CONTENEDOR Y TIPOGRAFÍA ===== */
+.titulo {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.subtitulo {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.fechas, .descripcion {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* ===== GRID DE VIAJES ===== */
+.grid-viajes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media(min-width: 768px){ .grid-viajes { grid-template-columns: 1fr 1fr; } }
+@media(min-width: 1024px){ .grid-viajes { grid-template-columns: 1fr 1fr 1fr; } }
+
+.card-viaje {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-viaje:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body { padding: 15px; }
+.card-titulo { font-size: 18px; font-weight: 700; margin: 0 0 5px; }
+.card-fechas { font-size: 14px; color: #777; margin: 0 0 10px; }
+.card-descripcion { font-size: 14px; color: #555; margin-bottom: 15px; }
+
+/* ===== BOTONES ===== */
+.btn-detalle, .btn-editar {
+    display: inline-block;
+    background: #007BFF;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background 0.3s;
+    text-decoration: none;
+}
+
+.btn-detalle:hover, .btn-editar:hover {
+    background: #0056b3;
+}
+
+/* ===== MINIATURAS ===== */
+.galeria { display: flex; flex-wrap: wrap; gap: 10px; }
+.miniatura-container { position: relative; display: inline-block; }
+.miniatura {
+    width: 120px; height: 120px; object-fit: cover;
+    border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer; transition: opacity 0.3s;
+}
+.miniatura:hover { opacity: 0.8; }
+
+.btn-eliminar {
+    position: absolute; top: 2px; right: 2px;
+    background: rgba(255,0,0,0.8); color: white;
+    border-radius: 50%; width: 20px; height: 20px;
+    text-align: center; line-height: 20px;
+    font-weight: bold; font-size: 14px; cursor: pointer;
+}
+.btn-eliminar:hover { background: rgba(255,0,0,1); }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.8); display:flex;
+    justify-content:center; align-items:center; z-index:50;
+}
+.lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+.hidden { display: none; }
+
+.btn-eliminar-viaje {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.btn-eliminar-viaje:hover {
+    background: #c0392b;
+}
+
+.logo-img {
+    height: 20px;   /* más pequeño que antes */
+    width: auto;
+    vertical-align: middle;
+}
+
+
+/* ===== HERO SECTION ===== */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url("{% static 'img/fondo.jpg' %}") no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;   /* ocupa toda la pantalla */
+    margin: 0;
+    padding: 0 20px;
+}
+
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-logo {
+    height: 80px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn-hero {
+    display: inline-block;
+    background: #ff7f50;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s;
+    text-decoration: none;
+}
+
+.btn-hero:hover {
+    background: #e0633f;
+}
+
+/* ===== ANIMACIÓN HERO ===== */
+.hero-content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideIn 1s forwards;
+}
+
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-viaje {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardFadeIn 0.5s forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación en secuencia para varias tarjetas */
+.grid-viajes .card-viaje:nth-child(1) { animation-delay: 0.1s; }
+.grid-viajes .card-viaje:nth-child(2) { animation-delay: 0.3s; }
+.grid-viajes .card-viaje:nth-child(3) { animation-delay: 0.5s; }
+.grid-viajes .card-viaje:nth-child(4) { animation-delay: 0.7s; }
+/* Ajusta según el número de tarjetas */
+
+.miniatura {
+    width: 120px; 
+    height: 120px; 
+    object-fit: cover;
+    border-radius: 8px; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer; 
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.miniatura:hover {
+    transform: scale(1.05); /* ligero zoom */
+    opacity: 0.9;
+}
+
+.btn-logout {
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background 0.3s;
+}
+
+.btn-logout:hover {
+    background: #e03e3e;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* logo izquierda, links derecha */
+    align-items: center;
+    background-color: #cdcbcb;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.logo img {
+    height: 200px;
+    display: block;
+}
+
+.nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 250px; /* espacio entre links */
+}
+
+.nav-links a {
+    color: rgb(46, 45, 45);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #ffcc00; /* color hover */
+}
+
+/* Responsive: menú vertical en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-links ul {
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 5px;
+    }
+}
+
+.hero {
+    height: 100vh; /* pantalla completa */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,0.5); /* oscurece la imagen */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.overlay h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #e68900;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #f5f5f5;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Título */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Form group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Inputs y selects */
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea,
+.form-group select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+/* Labels */
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Error text */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+/* Botón */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+/* Fondo de inicio */
+.home-bg {
+    background: url("../img/tu_foto.jpg") no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* Fondo de sobre mí */
+.sobre-bg {
+    background: url("../img/fondo.jpg") no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.hero .overlay {
+    background-color: rgba(0,0,0,0.5);
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}

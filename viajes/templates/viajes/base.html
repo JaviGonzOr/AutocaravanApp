@@ -18,23 +18,29 @@
 {% else %}
     <p>No logueado</p>
 {% endif %}
-   <header class="navbar">
-        <div class="logo">
-            <h1 class="logo"> <img src="{% static 'img/milogo.png' %}" width="200" height="200"></h1>
-            <nav class="nav-links">
-                <a href="{% url 'home' %}">Inicio</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://park4night.com/es" target="_blank" rel="noopener noreferrer">Park4night</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://www.lulukabaraka.com/" target="_blank" rel="noopener noreferrer">Recambios</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="{% url 'sobre_mi' %}">Sobre la App</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="{% url 'ruta' %}">Crea tu Ruta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+   
+    <nav style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #bcb5b5;">
+    <!-- Logo a la izquierda -->
+    <div class="logo">
+        <img src="{% static 'img/milogo.png' %}" alt="Logo" style="height: 200px;">
+    </div>
+        
+                
+                    <a href="/admin/" style="color: rgb(225, 8, 8); font-size: 0.9rem; margin-left: 15px; text-decoration: none;">Admin</a>
+                    <a href="{% url 'home' %}" style="color: rgb(32, 29, 29); font-size: 0.9rem; margin-left: 15px; text-decoration: none;">Inicio</a>
+                    <a href="https://park4night.com/es" style="color: rgb(32, 29, 29); font-size: 0.9rem; margin-left: 15px; text-decoration: none;" target="_blank" rel="noopener noreferrer">Park4night</a>
+                    <a href="https://www.lulukabaraka.com/" style="color: rgb(32, 29, 29); font-size: 0.9rem; margin-left: 15px; text-decoration: none;" target="_blank" rel="noopener noreferrer">Recambios</a>
+                    <a href="{% url 'sobre_mi' %}" style="color: rgb(32, 29, 29); font-size: 0.9rem; margin-left: 15px; text-decoration: none;">Sobre la App</a>
+                    <a href="https://www.google.com/maps" style="color: rgb(32, 29, 29); font-size: 0.9rem; margin-left: 15px; text-decoration: none;">Crea tu Ruta</a>
                   {% if user.is_authenticated %}
-                <a href="{% url 'c_sesion' %}">Cerrar sesión</a></li>
+                    <a href="{% url 'c_sesion' %}"style="color: rgb(32, 29, 29); font-size: 0.9rem; margin-left: 15px; text-decoration: none;" >Cerrar sesión</a></li>
             
                   {% endif %}
-            </nav>
+                
+            
         </div>
-    </header>
+        </nav>
+   
 
     <main class="container">
         {% block content %}{% endblock %}

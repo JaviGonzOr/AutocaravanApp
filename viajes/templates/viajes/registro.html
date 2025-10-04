@@ -1,40 +1,21 @@
-{% extends 'viajes/base.html' %}
+
+
+
+{% load static %}
+
+{% block title %}Registro{% endblock %}
+
 {% block content %}
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css"
-     integrity="sha384-zEpdAL7W11eTKeoBJK1g79kgl9qjP7g84KfK3AZsuonx38n8ad+f5ZgXtoSDxPOh" crossorigin="anonymous">
-<h1 class="text-center">
-     {% load static %}
-     <img src="{% static 'img/autocaravana2.gif' %}" width="250" height="200">
-</h1>
-<main class="container py-5">
-     <h1 class="display-3 text-center text-warning">Registro</h1>
-     <form action="/registro/" , method="POST" class="card card-body">
-          {% csrf_token %}
+<div class="register-container" style="position: relative; text-align: center; height: 100vh; background-image: url('{% static "img/fondo4.png" %}'); background-size: cover; background-position: center;">
+    <div class="register-box" style="background: rgba(200,200,200,0.55); display: inline-block; padding: 40px; border-radius: 10px; margin-top: 10%;">
+        <h2>¡Crea tu cuenta!</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <form action="/registro/" , method="POST" class="card card-body">
           <span class="alert-default-danger">{{error}}</span>
-          
-          
-          <div class="mb-3">
-               <label for="username">Nombre</label>
-               <input type="text" name='username' id='username' class="form-control" placeholder="Introduzca el Nombre">
-          </div>
-
-          <div class="mb-3">
-               <label for="password1">Contraseña</label>
-               <input type="password" name='password1' id='password1' class="form-control"
-                    placeholder="Introduzca la Contraseña">
-          </div>
-
-          <div class="mb-3">
-               <label for="password2">Contraseña</label>
-               <input type="password" name='password2' id='password2' class="form-control"
-                    placeholder="Repita la Contraseña">
-          </div>
-          <button class="btn btn-dark">
-               Guardar
-          </button>
-     </form>
-</main>
-
-
+            <button type="submit" style="padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;">Registrarme</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

@@ -472,23 +472,23 @@ a:hover {
 }
 
 .hero {
-    background-image: url("../img/tu_foto.jpg"); /* 👈 tu foto */
+    height: 100vh; /* pantalla completa */
     background-size: cover;
     background-position: center;
-    height: 80vh;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.6); /* capa oscura */
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    border-radius: 12px;
+    background-color: rgba(0,0,0,0.5); /* oscurece la imagen */
+    padding: 20px;
+    border-radius: 10px;
 }
+
 
 .overlay h1 {
     font-size: 3rem;
@@ -590,4 +590,33 @@ a:hover {
 
 .btn-submit:hover {
     background-color: #0056b3;
+}
+
+/* Fondo de inicio */
+.home-bg {
+    background: url("../img/tu_foto.jpg") no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* Fondo de sobre mí */
+.sobre-bg {
+    background: url("../img/fondo.jpg") no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.hero .overlay {
+    background-color: rgba(0,0,0,0.5);
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
 }
