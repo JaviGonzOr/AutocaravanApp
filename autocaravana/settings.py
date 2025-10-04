@@ -4,6 +4,9 @@ from pathlib import Path
 import dj_database_url
 from decouple import config
 
+
+
+
 # Seguridad
 SECRET_KEY = config("SECRET_KEY", default="unsafe-secret-key")
 DEBUG = config("DEBUG", default=False, cast=bool)
@@ -39,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'viajes',  # tu app
+    'viajes', 
+    "cloudinary",
+    "cloudinary_storage",
 ]
 
 # Middleware
@@ -101,9 +106,10 @@ USE_TZ = True
 
 
 # Archivos multimedia
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # Configuración de sesiones
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -120,3 +126,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'superderesain@gmail.com'
 EMAIL_HOST_PASSWORD = '28061982'
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": config("CLOUDINARY_API_KEY"),
+    "API_SECRET": config("CLOUDINARY_API_SECRET")
+}
