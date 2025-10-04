@@ -5,7 +5,7 @@
 
 
 {% block content %}
-<div class="register-container" style="position: relative; text-align: center; height: 100vh; background-image: url('{% static "img/fondo5.jpg" %}'); background-size: cover; background-position: center;">
+<div class="register-container" style="position: relative; text-align: center; height: 100vh; background-image: url('{% static "img/fondo7.jpg" %}'); background-size: cover; background-position: center;">
     <div class="register-box" style="background: rgba(255,255,255,0.85); display: inline-block; padding: 40px; border-radius: 10px; margin-top: 10%;">
         <h2 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">¡Inicia Sesion!</h2>
         <form method="post">
@@ -13,7 +13,7 @@
             {{ form.as_p }}
             <form action="/i_sesion/" , method="POST" class="card card-body">
             <span class="alert-danger">{{error}}</span>
-            <button type="submit" style="padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;">Registrarme</button>
+            <button type="submit" style="padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;">Aceptar</button>
         </form>
     </div>
 </div>
