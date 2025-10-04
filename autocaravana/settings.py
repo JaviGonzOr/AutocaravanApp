@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Seguridad
 SECRET_KEY = 'Mija2801'
 DEBUG = True
-ALLOWED_HOSTS = ['https://myautocaravanapp.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # settings.py
@@ -65,11 +65,11 @@ WSGI_APPLICATION = 'autocaravana.wsgi.application'
 # Base de datos (SQLite por defecto)
 # Base de datos por defecto: SQLite para desarrollo
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-
 
 
 # Validación de contraseñas
