@@ -19,7 +19,7 @@ class Viaje(models.Model):
 
 class Archivo(models.Model):
     viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE, related_name='archivos')
-    archivo = models.FileField(upload_to='archivos/')
+    archivo = models.ImageField(upload_to='archivos/')
 
     def __str__(self):
         return self.archivo.name
