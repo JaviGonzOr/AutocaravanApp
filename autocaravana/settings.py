@@ -2,14 +2,27 @@
 import os
 from pathlib import Path
 import dj_database_url
-
-# Rutas base
-BASE_DIR = Path(__file__).resolve().parent.parent
+from decouple import config
 
 # Seguridad
-SECRET_KEY = 'Mija2801'
-DEBUG = True
-ALLOWED_HOSTS = []
+SECRET_KEY = config("SECRET_KEY", default="unsafe-secret-key")
+DEBUG = config("DEBUG", default=False, cast=bool)
+ALLOWED_HOSTS = ["*"]  # luego puedes limitarlo a tu dominio de Render
+
+# Base de datos
+DATABASES = {
+    "default": dj_database_url.config(default=config("DATABASE_URL"))
+}
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Archivos estáticos
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Rutas base
+
+
 
 
 # settings.py
@@ -65,10 +78,9 @@ WSGI_APPLICATION = 'autocaravana.wsgi.application'
 # Base de datos (SQLite por defecto)
 # Base de datos por defecto: SQLite para desarrollo
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL")
+    )
 }
 
 
@@ -86,10 +98,7 @@ TIME_ZONE = 'Europe/Madrid'
 USE_I18N = True
 USE_TZ = True
 
-# Archivos estáticos
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
 
 # Archivos multimedia
 MEDIA_URL = '/media/'
