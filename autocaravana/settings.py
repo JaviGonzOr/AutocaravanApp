@@ -110,9 +110,7 @@ USE_TZ = True
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # Solo define MEDIA_URL y MEDIA_ROOT si quieres usar archivos locales en desarrollo
-if DEBUG:
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Configuración de sesiones
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
