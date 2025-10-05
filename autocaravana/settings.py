@@ -109,6 +109,12 @@ USE_TZ = True
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "dfh9bfmnn",
+    "API_KEY": "966196166126942",
+    "API_SECRET": "2knW8UAKHTBRAA2nN7my-tUzyGQ",
+}
+
 # Solo define MEDIA_URL y MEDIA_ROOT si quieres usar archivos locales en desarrollo
 
 
@@ -128,8 +134,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'superderesain@gmail.com'
 EMAIL_HOST_PASSWORD = '28061982'
 
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": config("CLOUDINARY_API_KEY"),
-    "API_SECRET": config("CLOUDINARY_API_SECRET")
-}
