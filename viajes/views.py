@@ -25,16 +25,24 @@ def home(request):
     viajes = Viaje.objects.all()
     return render(request, 'viajes/home.html', {'viajes': viajes})
 
+from cloudinary.uploader import destroy
+
 def eliminar_viaje(request, pk):
     viaje = get_object_or_404(Viaje, pk=pk)
     
-    # Primero eliminamos todos los archivos del viaje
+    # Primero eliminamos todos los archivos del viaje en Cloudinary
     for archivo in viaje.archivos.all():
-        archivo.archivo.delete()  # Borra el archivo físico
-        archivo.delete()          # Borra el registro de la base de datos
-        viaje.delete()
+        try:
+            destroy(archivo.archivo.public_id)  # Borra de Cloudinary
+        except Exception as e:
+            print(f"No se pudo borrar {archivo.archivo.public_id}: {e}")
+        archivo.delete()  # Borra el registro en la DB
+
+    # Luego borramos el viaje
+    viaje.delete()
     
     return redirect('lista_viajes')
+
 
 
 @login_required
@@ -96,12 +104,24 @@ def sobre_mi(request):
     return render(request, 'viajes/sobre_mi.html')
 
 
+from django.shortcuts import get_object_or_404, redirect
+from cloudinary.uploader import destroy
+from viajes.models import Archivo
+
 def eliminar_archivo(request, pk):
     archivo = get_object_or_404(Archivo, pk=pk)
-    viaje_pk = archivo.viaje.pk
-    archivo.archivo.delete()  # Borra el archivo físico
-    archivo.delete()          # Borra el registro en la base de datos
-    return redirect('detalle_viaje', pk=viaje_pk)
+    
+    # Intentamos borrar la imagen de Cloudinary
+    try:
+        destroy(archivo.archivo.public_id)
+    except Exception as e:
+        print(f"No se pudo borrar {archivo.archivo.public_id} de Cloudinary: {e}")
+    
+    # Borrar el registro de la base de datos
+    archivo.delete()
+    
+    return redirect('lista_viajes')  # O a la página donde quieras volver
+
 
 
 def registro(request):
