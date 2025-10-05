@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 class Viaje(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,7 +20,7 @@ class Viaje(models.Model):
 
 class Archivo(models.Model):
     viaje = models.ForeignKey(Viaje, on_delete=models.CASCADE, related_name='archivos')
-    archivo = models.ImageField(upload_to='archivos/')
+    archivo = CloudinaryField('archivos/')
 
     def __str__(self):
         return self.archivo.name
