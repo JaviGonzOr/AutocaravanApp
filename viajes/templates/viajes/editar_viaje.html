@@ -1,40 +1,63 @@
-{% extends 'viajes/base.html' %} {% block title %}Editar viaje{% endblock %} {%
-block content %}
+{% extends 'viajes/base.html' %}
+
+{% block title %}Editar viaje{% endblock %}
+
+{% block content %}
 <h2 class="text-2xl font-bold mb-4">Editar viaje: {{ viaje.titulo }}</h2>
 
-<form
-  method="POST"
-  enctype="multipart/form-data"
-  class="bg-white p-6 rounded shadow"
->
-  {% csrf_token %} {{ form.as_p }}
-  <label class="block mt-4">Subir más archivos</label>
-  <input type="file" name="archivos" multiple class="mt-2" />
-  <button type="submit" class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded">
-    Actualizar
-  </button>
+<!-- Formulario para editar viaje y subir archivos -->
+<form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <label class="block mt-4">Subir más archivos</label>
+    <input type="file" name="archivos" multiple class="mt-2" />
+
+    <button type="submit" class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded">
+        Actualizar
+    </button>
 </form>
 
+<!-- Galería de archivos existentes -->
 <h3 class="text-xl mt-6 mb-2">Archivos existentes</h3>
-<div
-  class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center"
->
-  {% for archivo in viaje.archivos.all %}
-  <div class="miniatura-container">
-    <img
-      src="{{ archivo.archivo.url }}"
-      class="miniatura"
-      onclick="openLightbox('{{ archivo.archivo.url }}')"
-    />
+<div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center">
+    {% for archivo in viaje.archivos.all %}
+    <div class="miniatura-container">
+        <img
+            src="{{ archivo.archivo.url }}"
+            class="miniatura cursor-pointer"
+            onclick="openLightbox('{{ archivo.archivo.url }}')"
+        />
 
-    <a
-      href="{% url 'eliminar_archivo' archivo.pk %}"
-      class="btn-eliminar"
-      onclick="return confirm('¿Seguro que quieres eliminar esta foto?');"
-      >&times;</a
-    >
-  </div>
-  {% endfor %}
+        <a
+            href="{% url 'eliminar_archivo' archivo.pk %}"
+            class="btn-eliminar"
+            onclick="return confirm('¿Seguro que quieres eliminar esta foto?');"
+            >&times;</a
+        >
+    </div>
+    {% empty %}
+    <p>No hay archivos subidos aún.</p>
+    {% endfor %}
 </div>
+
+<!-- Lightbox modal -->
+<div id="lightbox" class="lightbox hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closeLightbox()">
+    <img id="lightbox-img" class="max-h-full max-w-full" src="" />
+</div>
+
+<!-- Scripts Lightbox -->
+<script>
+function openLightbox(url) {
+    const lightbox = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    img.src = url;
+    lightbox.classList.remove("hidden");
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").classList.add("hidden");
+}
+</script>
 
 {% endblock %}
